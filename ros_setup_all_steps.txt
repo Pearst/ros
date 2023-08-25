@@ -85,6 +85,7 @@ source ~/.bashrc
 
 
 ################ simulasyon çalıştırma
-roslaunch.
+gazebo --verbose worlds/iris_arducopter_runway.world
+roslaunch iq_sim runway.launch
 cd ~/ardupilot/ArduCopter
 ../Tools/autotest/sim_vehicle.py -f gazebo-iris --console --map
