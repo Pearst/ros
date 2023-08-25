@@ -81,3 +81,10 @@ catkin build
 
 source ~/.bashrc
 
+
+
+
+################ simulasyon çalıştırma
+roslaunch.
+cd ~/ardupilot/ArduCopter
+../Tools/autotest/sim_vehicle.py -f gazebo-iris --console --map
