@@ -6,11 +6,13 @@ sudo apt upgrade
 ########ardupilot kurulumu
 sudo apt-get install git
 sudo apt-get install gitk git-gui
-git clone --recurse-submodules https://github.com/ArduPilot/ardupilot.git
-cd ardupilot
+git config --global url."https://github.com/".insteadOf git@github.com:
+git config --global url."https://".insteadOf git://
+cd && git clone https://github.com/ArduPilot/ardupilot.git
+cd ardupilot/
+git submodule update --init --recursive
 Tools/environment_install/install-prereqs-ubuntu.sh -y
-cd ~/ardupilot/Tools/autotest
-python3 sim_vehicle.py -w -v ArduCopter --map --console
+. ~/.profile
 
 
 
