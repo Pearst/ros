@@ -4,6 +4,7 @@ sudo apt upgrade
 
 
 ########ardupilot kurulumu
+######## Note: EĞER KURULUM BİTTİKTEN SONRA VEHICLE_SIM.PY AÇILIŞINDA PROBLEM YAŞARSANIZ ARDUPİLOT KURLUMUNU BİR KAÇ DEFA BAŞTAN YAPARSANIZ SORUN DÜELECEKTİR.
 sudo apt-get install git
 sudo apt-get install gitk git-gui
 git config --global url."https://github.com/".insteadOf git@github.com:
