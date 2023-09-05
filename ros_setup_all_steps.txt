@@ -84,7 +84,7 @@ catkin build
 source ~/.bashrc
 
 
-
+####restart pc
 
 ################ simulasyon çalıştırma
 gazebo --verbose worlds/iris_arducopter_runway.world
