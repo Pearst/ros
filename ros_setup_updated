@@ -28,8 +28,6 @@ sudo apt-get install gazebo11 libgazebo11-dev
 ######## ardupilot_gazebo
 sudo apt update
 
-sudo apt install libgz-sim7-dev rapidjson-dev # bu olmassa gec
-
 sudo apt-get install build-essential
 sudo apt-get install g++
 cd ~
