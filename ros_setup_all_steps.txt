@@ -50,13 +50,26 @@ sudo apt install python3-rosdep
 sudo rosdep init
 rosdep update
 
+sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc ros-noetic-rgbd-launch ros-noetic-rosserial-arduino ros-noetic-rosserial-python ros-noetic-rosserial-client ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro ros-noetic-compressed-image-transport ros-noetic-rqt-image-view ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
+sudo apt-get install ros-noetic-ros-control*
+sudo apt-get install ros-noetic-control* -o Dpkg::Options::="--force-overwrite"
+sudo apt-get install ros-noetic-moveit*
+sudo apt-get install wget
+wget https://zoom.us/client/latest/zoom_amd64.deb -O zoom_amd64.deb
+sudo apt install ./zoom_amd64.deb
+
+
 
 
 ###### catkinws
 sudo apt-get install python3-wstool python3-rosinstall-generator python3-catkin-lint python3-pip python3-catkin-tools
 pip3 install osrf-pycommon
+source /opt/ros/noetic/setup.bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
+catkin_make  # sonradan eklendi
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+
 catkin init
 cd ~/catkin_ws
 wstool init ~/catkin_ws/src
@@ -68,7 +81,6 @@ wstool update -t src
 rosdep install --from-paths src --ignore-src --rosdistro `echo $ROS_DISTRO` -y
 
 catkin build
-
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 sudo ~/catkin_ws/src/mavros/mavros/scripts/install_geographiclib_datasets.sh
