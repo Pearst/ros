@@ -1,0 +1,106 @@
+sudo apt update
+sudo apt upgrade
+
+
+######## Ubuntu 20.04 içindir
+########ardupilot kurulumu
+######## Note: EĞER KURULUM BİTTİKTEN SONRA VEHICLE_SIM.PY AÇILIŞINDA PROBLEM YAŞARSANIZ ARDUPİLOT KURLUMUNU BİR KAÇ DEFA BAŞTAN YAPARSANIZ SORUN DÜELECEKTİR.
+sudo apt-get install git
+sudo apt-get install gitk git-gui
+git config --global url."https://github.com/".insteadOf git@github.com:
+git config --global url."https://".insteadOf git://
+cd && git clone https://github.com/ArduPilot/ardupilot.git
+cd ardupilot/
+git submodule update --init --recursive
+sudo apt install python3-testresources
+Tools/environment_install/install-prereqs-ubuntu.sh -y
+. ~/.profile
+
+
+
+######## gazebo
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt update
+sudo apt-get install gazebo11 libgazebo11-dev
+
+
+######## ardupilot_gazebo
+sudo apt update
+
+sudo apt install libgz-sim7-dev rapidjson-dev # bu olmassa gec
+
+sudo apt-get install build-essential
+sudo apt-get install g++
+cd ~
+git clone https://github.com/ArduPilot/ardupilot_gazebo
+cd ardupilot_gazebo
+mkdir build && cd build
+cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+make -j4
+export GZ_SIM_SYSTEM_PLUGIN_PATH=$HOME/ardupilot_gazebo/build:$GZ_SIM_SYSTEM_PLUGIN_PATH
+export GZ_SIM_RESOURCE_PATH=$HOME/ardupilot_gazebo/models:$HOME/ardupilot_gazebo/worlds:$GZ_SIM_RESOURCE_PATH
+echo 'export GZ_SIM_SYSTEM_PLUGIN_PATH=$HOME/ardupilot_gazebo/build:${GZ_SIM_SYSTEM_PLUGIN_PATH}' >> ~/.bashrc
+echo 'export GZ_SIM_RESOURCE_PATH=$HOME/ardupilot_gazebo/models:$HOME/ardupilot_gazebo/worlds:${GZ_SIM_RESOURCE_PATH}' >> ~/.bashrc
+source ~/.bashrc
+
+
+########### neotic
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt install curl # if you haven't already installed curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+sudo apt update
+sudo apt install ros-noetic-desktop-full
+source /opt/ros/noetic/setup.bash
+
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+sudo apt install python3-rosdep
+sudo rosdep init
+rosdep update
+
+
+
+###### catkinws
+sudo apt-get install python3-wstool python3-rosinstall-generator python3-catkin-lint python3-pip python3-catkin-tools
+pip3 install osrf-pycommon
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
+catkin init
+cd ~/catkin_ws
+wstool init ~/catkin_ws/src
+
+rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
+rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
+wstool merge -t src /tmp/mavros.rosinstall
+wstool update -t src
+rosdep install --from-paths src --ignore-src --rosdistro `echo $ROS_DISTRO` -y
+
+catkin build
+
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+sudo ~/catkin_ws/src/mavros/mavros/scripts/install_geographiclib_datasets.sh
+
+
+###Her farklı dünya ve model vb. içeren dosyalar için bu işlemler yapılmalıdır.
+cd ~/catkin_ws/src
+git clone https://github.com/Intelligent-Quads/iq_sim.git
+echo "GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:$HOME/catkin_ws/src/iq_sim/models" >> ~/.bashrc
+
+cd ~/catkin_ws
+catkin build
+source ~/.bashrc
+
+
+####restart pc
+
+################ simulasyon çalıştırma
+gazebo --verbose worlds/iris_arducopter_runway.world
+roslaunch iq_sim runway.launch
+####or
+roslaunch iq_sim lidar.launch
+cd ~/ardupilot/ArduCopter
+../Tools/autotest/sim_vehicle.py -f gazebo-iris --console --map
