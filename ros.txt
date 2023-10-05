@@ -1,9 +1,0 @@
-https://www.youtube.com/watch?v=1FpJvUVPxL0&ab_channel=IntelligentQuads
-
-https://www.youtube.com/watch?v=l6hVfVK_YWw&ab_channel=TheConstruct
-
-https://www.youtube.com/watch?v=ucS_ekzuzMA&ab_channel=TheConstruct
-
-https://github.com/Intelligent-Quads/iq_tutorials/tree/master/docs
-
-https://github.com/Intelligent-Quads/iq_tutorials/blob/master/docs/Installing_Ardupilot_20_04.md

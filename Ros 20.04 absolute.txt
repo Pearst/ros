@@ -1,0 +1,2 @@
+https://www.youtube.com/watch?v=W-05JNxjJOM&ab_channel=Robotica
+##bu videodaki adımları yap daha sonra iq_sim içindeki modellerden değişilik yaparak kendi modelini entegre edebilirsin.
