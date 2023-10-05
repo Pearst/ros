@@ -101,6 +101,7 @@ source ~/.bashrc
 ################ simulasyon çalıştırma
 gazebo --verbose worlds/iris_arducopter_runway.world
 roslaunch iq_sim runway.launch
+cd ~/ardupilot/ArduCopter/ && sim_vehicle.py -v ArduCopter -f gazebo-iris --console
 ####or
 roslaunch iq_sim lidar.launch
 cd ~/ardupilot/ArduCopter
