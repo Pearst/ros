@@ -67,7 +67,7 @@ pip3 install osrf-pycommon
 source /opt/ros/noetic/setup.bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
-catkin_make  # sonradan eklendi
+catkin_build  ######################################### sonradan eklendi eğer bir problem olursa KLASÖRÜ SİLİP BAŞTAN KURARKEN "catkin build" yerine "catkin_make" dene ###################
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 catkin init
