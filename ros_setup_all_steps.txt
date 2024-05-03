@@ -108,3 +108,12 @@ cd ~/ardupilot/ArduCopter/ && sim_vehicle.py -v ArduCopter -f gazebo-iris --cons
 roslaunch iq_sim lidar.launch
 cd ~/ardupilot/ArduCopter
 ../Tools/autotest/sim_vehicle.py -f gazebo-iris --console --map
+
+
+
+#######################################eğer iq_sim modelleri çalışmassa "bashrc" aşağıdaki gibi düzenlenmelidir#####################333
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models
+source /opt/ros/noetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+export GAZEBO_MODEL_PATH=/home/anil/ardupilot_gazebo/models:/home/anil/catkin_ws/src/iq_sim/models
+
