@@ -106,6 +106,16 @@ source ~/.bashrc
 gazebo --verbose worlds/iris_arducopter_runway.world
 roslaunch iq_sim runway.launch
 cd ~/ardupilot/ArduCopter/ && sim_vehicle.py -v ArduCopter -f gazebo-iris --console
+
+############eğer link1 down vb hata alıyorsan (bashrc aç en üstteki "source tools...vb bişey var onu yorum yap sonra)bunları dene############
+cd ardupilot/
+git submodule update --init --recursive
+Tools/environment_install/install-prereqs-ubuntu.sh -y
+. ~/.profile
+roslaunch iq_sim runway.launch
+cd ~/ardupilot/ArduCopter/ && sim_vehicle.py -v ArduCopter -f gazebo-iris --console
+
+
 ####or
 roslaunch iq_sim lidar.launch
 cd ~/ardupilot/ArduCopter
