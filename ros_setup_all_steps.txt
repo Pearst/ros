@@ -31,7 +31,8 @@ mkdir build
 cd build
 cmake ..
 make -j4
-sudo make installecho 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
+sudo make install
+echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
 echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
 . ~/.bashrc
 
