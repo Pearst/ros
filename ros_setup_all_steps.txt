@@ -113,9 +113,4 @@ cd ~/ardupilot/ArduCopter
 
 
 
-#######################################eğer iq_sim modelleri çalışmassa "bashrc" aşağıdaki gibi düzenlenmelidir#####################333
-export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models
-source /opt/ros/noetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
-export GAZEBO_MODEL_PATH=/home/pearst/ardupilot_gazebo/models:/home/pearst/catkin_ws/src/iq_sim/models
-
+#######################################yapamadıysan önceki sayfadaki video linki ile birlikte ilerler adım adım KESİN OLUYOR iq_sim modelleri çalışıyor#####################
